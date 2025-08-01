@@ -48,8 +48,10 @@ src/main/resources
 ### Start Kafka using Docker
 
 ```bash
+#Initialize and run docker
 docker run -d --name zookeeper -p 2181:2181 zookeeper
 
+#Configure kafka on server and specified port no
 docker run -d --name kafka -p 9092:9092 \
   -e KAFKA_ZOOKEEPER_CONNECT=host.docker.internal:2181 \
   -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
@@ -58,6 +60,7 @@ docker run -d --name kafka -p 9092:9092 \
   -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
   confluentinc/cp-kafka:7.4.0
 
+# Creating Kafka Topic
 docker exec kafka kafka-topics \
   --create --topic event-outcomes \
   --bootstrap-server localhost:9092 \
@@ -76,13 +79,13 @@ mvn spring-boot:run
 
 - URL: http://localhost:8080/h2-console
 - JDBC URL: `jdbc:h2:mem:testdb`
-- User: `sa`
+- User: `sample`
 
 ### Insert Sample Bet
 
 ```sql
 INSERT INTO BET (BET_ID, USER_ID, EVENT_ID, EVENT_MARKET_ID, EVENT_WINNER_ID, BET_AMOUNT)
-VALUES (1, 101, 1001, 501, 21, 500.0);
+VALUES (1, 124, 1001, 501, 21, 12000.0);
 ```
 
 ### Test Event Outcome API

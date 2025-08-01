@@ -14,6 +14,6 @@ public class RocketMQProducerMock {
 
     public void sendBetSettlement(Bet bet) {
         System.out.println("🚀 [MOCK] RocketMQ Producer: sending bet settlement: " + bet);
-        rocketMQConsumer.consume(bet); // simulate message delivery
+        rocketMQConsumer.consume(bet);
     }
 }
